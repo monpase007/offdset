@@ -1,19 +1,32 @@
-/* .App {
-  text-align: center;
-} */
-
-
 body {
-  background: #666;
+  background-image: url('safari.jpeg')
+}
+
+div#root {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.App {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 70px;
+  align-items: center;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 20px;
+  border-radius: 16px;
 }
 
 .container {
   max-width: 800px;
-  margin: 5rem auto;
 }
-.canvas{
+
+.canvas {
   border: 1px solid #ccc;
 }
+
 .card {
   display: flex;
   justify-content: center;
@@ -21,4 +34,25 @@ body {
   background: #fff;
   padding: 1rem;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sliderBox {
+  display: flex;
+  flex-direction: column;
+  width: 220px
+}
+
+.rc-slider-track {
+  background-color: cornsilk !important;
+}
+
+.rc-slider-handle {
+  border: solid 1px darkslategrey !important;
+  background: blanchedalmond !important;
+  border-radius: 30% !important;
+}
+
+.rc-slider-rail {
+  background-color: white !important;
+  
 }
