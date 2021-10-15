@@ -20,7 +20,7 @@ function App() {
       case `beta`: return 'Жертвы'
     }
   }
-  
+
   const LodkaValterraFunc = (x, y, options) => {
     const { alpha, beta, gamma, delta } = options;
     const dxDt = (alpha - beta * y) * x;
@@ -33,11 +33,13 @@ function App() {
       const payload = {
         dx: [],
         time: [],
+        time2: [],
       }
       let x = options.sX;
       let y = options.sY;
       for (let i = 0; i < options.time; i++) {
         payload.dx.push([x, y]);
+        payload.time2.push([i, x]);
         payload.time.push([i, y]);
         const [dx, dy] = LodkaValterraFunc(x, y, options);
         x += dx;
@@ -51,7 +53,7 @@ function App() {
   canvas['1'] = useRef();
   canvas['2'] = useRef();
 
-  function buildLine(canvas, ctx, data) {
+  function buildLine(canvas, ctx, data, color, data2, color2) {
     const [yMin, yMax] = minMax(data, 'y')
     const [xMin, xMax] = minMax(data, 'x')
     const padding = 40
@@ -88,24 +90,35 @@ function App() {
     ctx.closePath()
 
     ///////////////////////////////////////////
-    
+
     ctx.beginPath()
     ctx.lineWidth = 5;
-    ctx.strokeStyle = '#ff0000'
+    ctx.strokeStyle = color
 
     data?.forEach(([x, y]) => {
       ctx.lineTo(x * Kx, dpiSize.height - (y * Ky + padding))
     })
     ctx.stroke()
-    ctx.closePath()
 
+    ctx.beginPath()
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = color2
+
+    if (data2) {
+      data2?.forEach(([x, y]) => {
+        ctx.lineTo(x * Kx, dpiSize.height - (y * Ky + padding))
+      })
+    }
+    ctx.stroke()
+    ctx.closePath()
   }
 
   useEffect(() => {
+    // console.log(data.time2,'222',data.time,'111')
     const ctx = canvas['1']?.current?.getContext('2d')
     const ctx2 = canvas['2']?.current?.getContext('2d')
-    buildLine(canvas['1'], ctx, data.time)
-    buildLine(canvas['2'], ctx2, data.dx)
+    buildLine(canvas['1'], ctx, data.time, '#c4416a', data.time2, '#31a84b')
+    buildLine(canvas['2'], ctx2, data.dx, '#c4416a')
   }, [data])
 
   function minMax(data, type) {
@@ -123,28 +136,48 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {Object.keys(canvas).map((el,index) => (
-         <div className="container">
-         <div className="card">
-           <canvas id='canvas' ref={canvas[`${index+1}`]} className={'canvas'} />
-         </div>
-       </div>
-        ))}
-      <div className={`sliderBox`}>
-        {Object.keys(options).map((param) => (
-          <div className="btns_item">
-            <div style={{ minWidth: '60px' }}>{getName(param)} : {options[param]}</div>
-            <Slider
-              value={options[param] * multiplication[param]}
-              onChange={(data) => { setOptions(prev => ({ ...prev, [param]: data / multiplication[param] })) }}
-              min={param === 'time' ? 10 : 0}
-              max={param === 'time' ? 200 : 20}
-            />
+    <>
+      <div className="App">
+        <div className="appSignature title">
+        Модель Лотки-Вольтерры. Выполнил Филиппов Юрий.
+        </div>
+        {Object.keys(canvas).map((el, index) => (
+          <div className="container">
+            <div className="card">
+              <canvas id='canvas' ref={canvas[`${index + 1}`]} className={'canvas'} />
+            </div>
           </div>
         ))}
+        <div className={`sliderBox`}>
+          {Object.keys(options).map((param) => (
+            <div className="btns_item">
+              <div style={{ minWidth: '60px' }}>{getName(param)} : {options[param]}</div>
+              <Slider
+                value={options[param] * multiplication[param]}
+                onChange={(data) => { setOptions(prev => ({ ...prev, [param]: data / multiplication[param] })) }}
+                min={param === 'time' ? 10 : 0}
+                max={param === 'time' ? 200 : 20}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="appSignature">
+          <div className="item">
+            <div className="circle green" />
+            <div className="text">
+              Жертвы
+          </div>
+          </div>
+          <div className="item">
+            <div className="circle red" />
+            <div className="text">
+              Хищники
+          </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
 

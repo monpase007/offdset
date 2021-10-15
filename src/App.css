@@ -1,11 +1,14 @@
 body {
-  background-image: url('safari.jpeg')
+  background-image: url('./safari.jpg');
+  background-size: 100%;
 }
 
 div#root {
   display: flex;
   justify-content: center;
   padding-top: 30px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App {
@@ -13,10 +16,50 @@ div#root {
   justify-content: space-around;
   padding-top: 70px;
   align-items: center;
+  grid-gap: 40px;
   gap: 40px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   padding: 20px;
   border-radius: 16px;
+  width: 1200px;
+  flex-wrap: wrap;
+}
+
+.appSignature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 40px;
+  grid-gap: 10px;
+  gap: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.item {
+  display: flex;
+  grid-gap: 20px;
+  gap: 20px;
+  font-size: 20px;
+  align-items: center;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.green {
+  background: #31a84b;
+}
+
+.red {
+  background: #c4416a;
 }
 
 .container {
@@ -54,5 +97,4 @@ div#root {
 
 .rc-slider-rail {
   background-color: white !important;
-  
 }
