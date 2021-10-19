@@ -1,7 +1,4 @@
-body {
-  background-image: url('./safari.jpg');
-  background-size: 100%;
-}
+body {}
 
 div#root {
   display: flex;
@@ -13,10 +10,9 @@ div#root {
 
 .App {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding-top: 70px;
-  align-items: center;
-  grid-gap: 40px;
+  align-items: flex-start;
   gap: 40px;
   background: rgba(255, 255, 255, 0.7);
   padding: 20px;
@@ -25,19 +21,23 @@ div#root {
   flex-wrap: wrap;
 }
 
+.graphics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .appSignature {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  padding-left: 40px;
-  grid-gap: 10px;
   gap: 10px;
 }
 
 .title {
   font-size: 30px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .item {
@@ -49,34 +49,34 @@ div#root {
 }
 
 .circle {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 20px;
+  background: red;
+}
+.btns_item-text{
+  min-width: 60px;
+  display: flex;
+  gap:5px;
+}
+.beta {
+  background: #ff7300;
 }
 
-.green {
-  background: #31a84b;
-}
-
-.red {
-  background: #c4416a;
+.alpha {
+  background: #75001b;
 }
 
 .container {
   max-width: 800px;
 }
 
-.canvas {
-  border: 1px solid #ccc;
-}
-
 .card {
   display: flex;
   justify-content: center;
-  border-radius: 4px;
-  background: #fff;
+  background: #f2f2f2;
   padding: 1rem;
-  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  border: 3px solid black;
 }
 
 .sliderBox {
@@ -86,13 +86,13 @@ div#root {
 }
 
 .rc-slider-track {
-  background-color: cornsilk !important;
+  background-color: rgb(194, 196, 194) !important;
 }
 
 .rc-slider-handle {
-  border: solid 1px darkslategrey !important;
-  background: blanchedalmond !important;
-  border-radius: 30% !important;
+  border: solid 1px rgb(0, 0, 0) !important;
+  background: rgb(182, 143, 136) !important;
+  border-radius: 10% !important;
 }
 
 .rc-slider-rail {
