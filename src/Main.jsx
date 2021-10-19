@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
+import './main.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css'
 import * as option from './options'
-function App() {
+import { LodkaValterraFunc } from './algoritm'
+
+function Main() {
 
   const [data, setData] = useState({})
   const [options, setOptions] = useState(option.options)
@@ -19,13 +21,6 @@ function App() {
       case `alpha`: return 'Хищники'
       case `beta`: return 'Жертвы'
     }
-  }
-
-  const LodkaValterraFunc = (x, y, options) => {
-    const { alpha, beta, gamma, delta } = options;
-    const dxDt = (alpha - beta * y) * x;
-    const dyDt = (-gamma + delta * x) * y;
-    return [dxDt, dyDt]
   }
 
   useEffect(() => {
@@ -139,7 +134,7 @@ function App() {
     <>
       <div className="App">
         <div className="appSignature title">
-        Модель Лотки-Вольтерры. Выполнил Филиппов Юрий.
+        Модель Лодки-Вольтерры. Выполнил Филиппов Юрий.
         </div>
         {Object.keys(canvas).map((el, index) => (
           <div className="container">
@@ -181,4 +176,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
