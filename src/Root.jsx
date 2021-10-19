@@ -12,8 +12,6 @@ function Root() {
   const [options, setOptions] = useState(option.options)
   const multiplication = option.multiplication
 
- 
-
   useEffect(() => {
     setData(() => {
       const payload = {
@@ -46,13 +44,11 @@ function Root() {
     buildLine(canvas['2'], ctx2, data.dx, '#000675')
   }, [data])
 
-  
-
   return (
     <>
       <div className="App">
         <div className="appSignature title">
-        Выполнил Поздеев Виктор: Модель Лодки-Вольтерры. 
+        Выполнил Поздеев Виктор: "Модель Лодки-Вольтерры". 
         </div>
         <div className={`sliderBox`}>
           {Object.keys(options).map((param) => {
